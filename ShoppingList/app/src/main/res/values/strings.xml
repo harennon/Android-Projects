@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Shopping List</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_button">Add Item</string>
+    <string name="list_header">Current List:</string>
+    <string name="list_peach">peach</string>
+    <string name="list_watermelon">watermelon</string>
+    <string name="list_lemon">lemon</string>
+    <string name="list_grapes">grapes</string>
+    <string name="list_banana">banana</string>
+    <string name="list_pineapple">pineapple</string>
+    <string name="list_pear">pear</string>
+    <string name="list_orange">orange</string>
+    <string name="list_apple">apple</string>
+    <string name="activity_items_name">Items Activity</string>
+    <string name="clear_button">Clear</string>
+</resources>
