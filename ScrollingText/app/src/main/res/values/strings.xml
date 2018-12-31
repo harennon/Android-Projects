@@ -50,4 +50,10 @@
         This article was taken from :: https://fivethirtyeight.com/features/we-have-ways-to-stop-rogue-scientists-they-dont-always-work/
     </string>
     <string name="add_comment_button_label">add comment</string>
+    <string name="context_edit">Edit</string>
+    <string name="context_share">Share</string>
+    <string name="context_delete">Delete</string>
+    <string name="context_edit_message">Edit choice clicked.</string>
+    <string name="context_share_message">Share choice clicked.</string>
+    <string name="context_delete_message">Delete choice clicked.</string>
 </resources>
