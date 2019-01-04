@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SingleHallActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/hall_image_single"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:visibility="@integer/hall_image_visibility"
+            android:contentDescription="@string/hall_content_description" />
+
+        <TextView
+            android:id="@+id/title_single"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/title_placeholder"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/hall_image_single"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <TextView
+            android:id="@+id/subtitle_single"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/single_subtitle"
+            android:layout_centerHorizontal="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            android:layout_below="@id/title_single"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/empty_rooms_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subtitle_single"
+            android:scrollbars="vertical" />
+
+    </RelativeLayout>
+</ScrollView>
+
