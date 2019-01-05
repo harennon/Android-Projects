@@ -34,7 +34,7 @@ class RoomsLiveData extends LiveData<ArrayList<Room>> {
 
         @Override
         protected String doInBackground(String... strings) {
-            return NetworkUtil.getEmptyRooms("get_empty_rooms.php", strings);
+            return NetworkUtil.getEmptyRooms(strings[0]);
         }
 
         @Override

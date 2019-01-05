@@ -17,12 +17,17 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class SingleHallActivity extends AppCompatActivity {
+
     private RecyclerView mRecyclerView;
     private TextView mTitleTextView;
     private ImageView mHallImageView;
     private FreeRoomsAdapter mAdapter;
     private ArrayList<Room> freeRoomList;
     private RoomsViewModel mRoomsViewModel;
+    public static final String EXTRA_HALL_ROOM_NUM =
+            "neilj.studyroomscheduler.SingleHallActivity.extra.hall.room.NUM";
+    public static final String EXTRA_ROOM_ID =
+            "neilj.studyroomscheduler.SingleHallActivity.extra.room.ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

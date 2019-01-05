@@ -6,6 +6,14 @@
     <string name="hall_content_description">Hall Image</string>
     <string name="room_placeholder">Room NaN</string>
     <string name="single_subtitle">Available Rooms</string>
+    <string name="order_title_textview">Fill out the following: </string>
+    <string name="room_label">Room: </string>
+    <string name="name_label">Name:</string>
+    <string name="name_text">Enter your name</string>
+    <string name="netId_label">UWNetID: </string>
+    <string name="netId_text">Enter your UWNetID</string>
+    <string name="time_label">Time:</string>
+    <string name="time_button">Choose Time</string>
     <array name="hall_titles">
         <item>Alder</item>
         <item>Elm</item>
@@ -23,4 +31,7 @@
         <item>@drawable/poplar</item>
         <item>@drawable/terry</item>
     </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

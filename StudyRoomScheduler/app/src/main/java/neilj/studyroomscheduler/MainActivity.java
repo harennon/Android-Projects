@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
     private HallAdapter mAdapter;
     private Parcelable mListState;
     public static final String EXTRA_HALL_NAME =
-            "neilj.studyroomscheduler.extra.hall.NAME";
+            "neilj.studyroomscheduler.MainActivity.extra.hall.NAME";
     public static final String EXTRA_IMAGE_RESOURCE =
-            "neilj.studyroomscheduler.extra.image.RESOURCE";
+            "neilj.studyroomscheduler.MainActivity.extra.image.RESOURCE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

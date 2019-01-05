@@ -1,6 +1,7 @@
 package neilj.studyroomscheduler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -90,9 +91,15 @@ class FreeRoomsAdapter extends RecyclerView.Adapter<FreeRoomsAdapter.RoomViewHol
             int pos = getLayoutPosition();
             //use that to access affected item in mFreeRoomList
             Room r = mFreeRoomList.get(pos);
-            int roomNum = r.getRoomNum();
+            String hall_room_num =
+                    ((TextView) v.findViewById(R.id.room_textview)).getText().toString();
             int roomId = r.getRoomId();
+
             //create intent to OrderActivity
+            Intent orderIntent = new Intent(mContext, OrderActivity.class);
+            orderIntent.putExtra(SingleHallActivity.EXTRA_HALL_ROOM_NUM, hall_room_num);
+            orderIntent.putExtra(SingleHallActivity.EXTRA_ROOM_ID, roomId);
+            mContext.startActivity(orderIntent);
         }
     }
 }
