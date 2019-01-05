@@ -4,11 +4,15 @@ import android.net.Uri;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 class NetworkUtil {
     private static final String LOG_TAG = NetworkUtil.class.getSimpleName();
@@ -29,20 +33,43 @@ class NetworkUtil {
     static boolean addOccupiedRoom(String roomId, String netId, String sec) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
+        OutputStream os = null;
+        BufferedWriter writer = null;
         try {
             String phpURI = "add_occupied_room.php?";
             //build requestURL with Uri
-            Uri builtURI = Uri.parse(BASE_URL + phpURI).buildUpon()
-                    .appendQueryParameter(QUERY_PARAM_ROOM_ID, roomId)
-                    .appendQueryParameter(QUERY_PARAM_NET_ID, netId)
-                    .appendQueryParameter(QUERY_PARAM_DURATION, sec)
-                    .build();
+            Uri builtURI = Uri.parse(BASE_URL + phpURI);
             URL requestURL = new URL(builtURI.toString());
+
+            //Build parameters
+            String[] query_params = new String[]
+                    {QUERY_PARAM_ROOM_ID, QUERY_PARAM_NET_ID, QUERY_PARAM_DURATION};
+            String[] value_params = new String[]
+                    {roomId, netId, sec};
+            StringBuilder result = new StringBuilder();
+            for(int i = 0; i < query_params.length; i++){
+                if(i != 0){
+                    result.append("&");
+                }
+                result.append(URLEncoder.encode(query_params[i], "UTF-8"));
+                result.append("=");
+                result.append(URLEncoder.encode(value_params[i], "UTF-8"));
+            }
 
             //set up connection and make request
             urlConnection = (HttpURLConnection) requestURL.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            urlConnection.setRequestProperty("charset", "utf-8");
+            urlConnection.setRequestProperty("Content-Length",
+                    String.valueOf(result.toString().getBytes().length));
+            urlConnection.setUseCaches(false);
+
+            //use BufferedWriter to write to the php
+            os = urlConnection.getOutputStream();
+            writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(result.toString());
+            writer.flush();
 
             //Get InputStream
             InputStream inputStream = urlConnection.getInputStream();
@@ -62,12 +89,13 @@ class NetworkUtil {
                 builder.append("\n");
             }
 
-            switch(builder.toString()){
+            switch (builder.toString()) {
                 case "Success!\n":
                     return true;
                 case "Error inserting request.\n":
                     return false;
-                default: return false;
+                default:
+                    return false;
             }
 
         } catch (Exception e) {
@@ -81,6 +109,20 @@ class NetworkUtil {
                 try {
                     reader.close();
                 } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (os != null){
+                try{
+                    os.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+            if (writer != null){
+                try{
+                    writer.close();
+                }catch (IOException e){
                     e.printStackTrace();
                 }
             }
